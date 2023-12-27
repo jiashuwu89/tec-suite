@@ -101,9 +101,10 @@ class Text(object):
         # outfile name
         marker = os.path.basename(self.obs.filename)[0:4]
         epoch = chunk[0]
-
+        
         year = epoch.strftime('%Y')
         yday = epoch.strftime('%j')
+        hour = epoch.strftime('%H')
 
         if not self.path:
             path = os.path.join(self.cfg.outDir, year, yday, marker)
@@ -113,7 +114,7 @@ class Text(object):
                 os.makedirs(self.path)
 
         # - the name
-        f_out = '%s_%s_%s_%s.%s' % (marker, sat, yday, year[2:], EXT)
+        f_out = '%s_%s_%s_%s_%s.%s' % (marker, sat, hour, yday, year[2:], EXT)
         f_out = os.path.join(self.path, f_out)
 
         # new file
